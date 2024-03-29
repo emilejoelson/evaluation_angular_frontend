@@ -1,0 +1,20 @@
+<h2>Members</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ID_Training</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of members">
+      <td>{{ member.id }}</td>
+      <td>{{ member.training ? member.training.id : 'N/A' }}</td> 
+      <td>{{ member.firstname }}</td>
+      <td>{{ member.lastname }}</td>
+    </tr>
+  </tbody>
+  
+</table>

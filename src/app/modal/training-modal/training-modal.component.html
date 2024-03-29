@@ -1,0 +1,15 @@
+<div class="modal-overlay">
+    <div class="modal-container">
+      <span class="close-button" (click)="onCloseModal()">&times;</span> <!-- Close button -->
+      <div class="modal-content">
+        <h2>Training Details</h2>
+        <div *ngIf="selectedTraining">
+          <p><strong>ID:</strong> {{ selectedTraining.id }}</p>
+          <p><strong>Title:</strong> {{ selectedTraining.title }}</p>
+          <p><strong>Description:</strong> {{ selectedTraining.description }}</p>
+          <p><strong>Start Date:</strong> {{ selectedTraining.startDate }}</p>
+          <p><strong>End Date:</strong> {{ selectedTraining.endDate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<h2>Trainings</h2>
+<input type="text"  placeholder="Search trainings..." [(ngModel)]="searchText" spellcheck="false"/>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th> 
+      <th>Members</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let training of trainings | trainingFilter : searchText">
+      <td>{{ training.id }}</td>
+      <td>{{ training.title }}</td>
+      <td>{{ training.description }}</td>
+      <td>{{ training.startDate }}</td>
+      <td>{{ training.endDate }}</td>
+      <td>
+        <button (click)="viewTrainingDetails(training.id)"><i class="bi bi-eye"></i></button>
+        <button (click)="editTraining(training)"><i class="bi bi-pencil-square"></i></button>
+        <button (click)="deleteTraining(training)"><i class="bi bi-trash3-fill"></i></button>
+      </td>
+      <td>
+        <div class="member-dropdown">
+          <select (click)="loadMembersForTraining(training.id)">
+            <option *ngFor="let member of membersMap[training.id]" [value]="member.id">{{ member.firstname }} {{ member.lastname }}</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-training-modal
+  *ngIf="selectedTraining"
+  [selectedTraining]="selectedTraining"
+  (closeModal)="closeTrainingDetails()">
+</app-training-modal>
+
+<app-update-training-modal
+  [updatedTraining]="updatedTraining"
+  [visible]="isUpdateModalVisible"
+  (closeModal)="closeUpdateModal()"
+  (updateTraining)="updateTraining()">
+</app-update-training-modal>
